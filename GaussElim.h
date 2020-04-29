@@ -6,9 +6,18 @@
 #define CS3353_PROJECT4_GAUSSELIM_H
 
 #include "Solver.h"
+#include <cmath>
 class GaussElim : public Solver{
+private:
+    double ** mat;
+    int size;
 public:
-    GaussElim(){}
+    GaussElim();
+    bool forwardElim();
+    void backSub();
+    void solve();
+    void print();
+    void setMat(double**&, int);
 };
 
 

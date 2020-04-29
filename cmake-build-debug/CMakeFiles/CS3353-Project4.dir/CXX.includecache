@@ -13,28 +13,20 @@ GaussElim.h
 /Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project4/GaussElim.h
 Solver.h
 /Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project4/Solver.h
-
-/Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project4/GaussSeidel.cpp
-GaussSeidel.h
-/Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project4/GaussSeidel.h
+cmath
+-
 
 /Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project4/GaussSeidel.h
 Solver.h
 /Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project4/Solver.h
 
-/Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project4/Jacobi.cpp
-Jacobi.h
-/Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project4/Jacobi.h
-
 /Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project4/Jacobi.h
 Solver.h
 /Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project4/Solver.h
 
-/Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project4/Solver.cpp
-Solver.h
 /Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project4/Solver.h
-
-/Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project4/Solver.h
+iostream
+-
 
 /Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project4/main.cpp
 iostream

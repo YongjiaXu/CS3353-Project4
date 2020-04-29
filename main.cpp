@@ -9,8 +9,9 @@ using namespace std;
 int main(){
 
     solverInterface s;
-    s.setSolver(3);
+    s.setSolver(1);
     s.readIn("input.txt");
+    s.solve();
 
     return 0;
 }

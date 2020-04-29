@@ -9,6 +9,8 @@
 class GaussSeidel : public Solver{
 public:
     GaussSeidel(){}
+    void solve(){}
+    void setMat(double**&, int){}
 };
 
 

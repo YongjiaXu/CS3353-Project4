@@ -75,3 +75,8 @@ void solverInterface::clear() {
     }
     delete mat;
 }
+
+void solverInterface::solve(){
+    mysolver->setMat(mat, size);
+    mysolver->solve();
+}

@@ -9,6 +9,8 @@
 class Jacobi : public Solver{
 public:
     Jacobi(){}
+    void solve(){}
+    void setMat(double**&, int){}
 };
 
 

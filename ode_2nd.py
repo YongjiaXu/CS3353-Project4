@@ -9,12 +9,10 @@ Created on Sat May  2 19:00:01 2020
 import numpy as np
 import matplotlib.pyplot as plt
 from timeit import default_timer as timer
-#from ODEs import *   #import the self-coded ODE solvers
 from scipy.integrate import odeint
 import solvers
 
 def solve(method, n, rfunc, xa, xb, A, B, C, alpha, beta):
-#    print(n)'
     h = (xb-xa)/(n+1);  # mesh size
         
     # matrix entry on tri-dialgonals
@@ -23,9 +21,10 @@ def solve(method, n, rfunc, xa, xb, A, B, C, alpha, beta):
     coC= A/(h**2) + B/(2*h)
 
     x = np.zeros(n) #x-values
-    sol = np.zeros(n) #computed y-values at grids
+    sol = np.zeros(n) # solution
     r = np.zeros(n)    #right handside of the equations
 
+    # Get the right hand side value on at grids
     for i in range(n):
         x[i] = (i+1) * h + xa
         r[i] = rfunc(x[i])
@@ -51,6 +50,7 @@ def solve(method, n, rfunc, xa, xb, A, B, C, alpha, beta):
         sol, iteration = SOR(coA, coB, coC, r, n, wopt)
     elif(method == 4):
         # Gaussian Elimination:
+        # build the matrix
         M = np.zeros((n,n+1))
         for i in range(1,n-1):
             M[i,i] = coB
@@ -64,7 +64,6 @@ def solve(method, n, rfunc, xa, xb, A, B, C, alpha, beta):
             M[i,n] = r[i]
         sol = solvers.gaussElim(M)
         iteration = -1
-        
 
     return x, sol, iteration
 
@@ -92,7 +91,6 @@ def Thomas(a,b,c,r):
     w[n-1] = z[n-1]/u[n-1]
     for k in range(n-2,-1,-1):
         w[k] = (z[k] - c[k]*w[k+1])/u[k]
-        
         
     return w
 
@@ -169,15 +167,10 @@ def SOR(coA, coB, coC, r, n, wopt, tol = 1e-8):
     return sol, iteration 
     
 
-def ode_perf(f1, rf1, xa, xb, coeff, n, m, T = True, I = True):
+def ode_perf(s, rf, xa, xb, coeff, n, m, T, I, E):
 
-    alpha = f1(xa); beta = f1(xb)
+    alpha = s(xa); beta = s(xb)
     
-#    d=0.0025; 
-#    xe = np.arange(xa,xb+d,d)
-#    ye = xe.copy()
-#    for i in range(len(xe)):
-#        ye[i] = f1(xe[i])
     l = []
     if T == True:
         time = {}; 
@@ -187,17 +180,22 @@ def ode_perf(f1, rf1, xa, xb, coeff, n, m, T = True, I = True):
         iteration = {};
         for i in m:
             iteration[i] = l.copy()
-
+    if E == True:
+        error = {};
+        for i in m:
+            error[i] = l.copy()
+            
     for k in range(len(n)):
         for i in m:
             start = timer()
-            x, sol,it = solve(i, n[k], rf1, xa, xb, coeff[0], coeff[1], coeff[2], alpha, beta)
+            x, sol,it = solve(i, n[k], rf, xa, xb, coeff[0], coeff[1], coeff[2], alpha, beta)
             end = timer()
 #            y = np.zeros(k) #true y-values at grids
 #            y = f1(x)
 #            err = max(np.abs(y-sol))
             if T == True: time[i].append(end-start)
             if I == True: iteration[i].append(it)
+            if E == True: y = s(x);  err = max(np.abs(y-sol)); error[i].append(err)
         
     name = {}
     name[0] = 'Thomas'
@@ -207,14 +205,15 @@ def ode_perf(f1, rf1, xa, xb, coeff, n, m, T = True, I = True):
     name[4] = 'Gauss-Elimination'
     
     linestyle = {}
-    linestyle[0] = 'r-'
-    linestyle[1] = 'b-'
-    linestyle[2] = 'g-'
-    linestyle[3] = 'y-'
+    linestyle[0] = 'r|-'
+    linestyle[1] = 'bo-'
+    linestyle[2] = 'g*-'
+    linestyle[3] = 'y--'
     linestyle[4] = 'c-'
+    
     if T == True:
         for i in m:
-            plt.plot(n, time[i], linestyle[i], label = name[i])
+            plt.plot(n, time[i], linestyle[i], lw = 1, markersize = 2.5, label = name[i])
         plt.legend()
         plt.title('Runtime performance')
         plt.xlabel('# of data points')
@@ -223,24 +222,33 @@ def ode_perf(f1, rf1, xa, xb, coeff, n, m, T = True, I = True):
 
     if I == True:
         for i in m:
-            plt.plot(n, iteration[i], linestyle[i], label = name[i])  
+            plt.plot(n, iteration[i], linestyle[i], lw = 1, markersize = 2.5, label = name[i])  
         plt.title('# of iterations comparison')
         plt.xlabel('# of data points')
         plt.ylabel('# of iterations')
         plt.legend()
         plt.show()
+        
+    if E == True:
+        for i in m:
+            plt.semilogy(n, error[i], linestyle[i], lw = 1, markersize = 2.5, label = name[i])  
+        plt.title('Error comparison')
+        plt.xlabel('# of data points')
+        plt.ylabel('Error')
+        plt.legend()
+        plt.show()
     
     
-def ode_interface():
-    # f1 is the actual solution to the ode
-    f1 = lambda x: (2*np.exp(1))*x*(np.exp(-x)) - np.exp(x)
-    rf1 = lambda x: -4*(np.exp(x))
-    n = [10,20,30]
-    m = [0,3,4]
-    coeff = [1,2,1]
-    ode_perf(f1, rf1, 0, 2, coeff, n, m, T = True, I = False)
+def ode_interface(s, rf, xa, xb, coeff, n = [10,20,30], m = [0,1,2,3,4], T = True, I = True, E = True):
+    
+    ode_perf(s, rf, xa, xb, coeff, n, m, T, I, E)
 
-ode_interface()
+
+## f1 is the actual solution to the ode
+#s1 = lambda x: (2*np.exp(1))*x*(np.exp(-x)) - np.exp(x)
+#rf1 = lambda x: -4*(np.exp(x))
+#xa = 0; xb = 2;
+#ode_interface(s1, rf1, xa, xb, n = [200,225,250], T = False, I = False)
     
     
     

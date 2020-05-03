@@ -7,67 +7,35 @@ Created on Sat May  2 19:00:01 2020
 """
 
 import numpy as np
-from numpy import exp,zeros,arange,absolute,max
-from math import exp,log,sqrt,cos,pi,sin,pi
 import matplotlib.pyplot as plt
 from timeit import default_timer as timer
 #from ODEs import *   #import the self-coded ODE solvers
-from scipy.integrate import  quad, odeint
+from scipy.integrate import odeint
+import solvers
 
-# solution function
-def func(x):
-    y= (2*exp(1))*x*(exp(-x)) - exp(x)
-    return y
-
-# righthand side function
-def rfunc(x):
-    y= -4*(exp(x))
-    return y
-
-#y = [y y']
-def f(y,x):
-    return np.array([y[1], -4*np.exp(x) - 2*y[1] - y[0]])
-
-def solve(method, n):
+def solve(method, n, rfunc, xa, xb, A, B, C, alpha, beta):
 #    print(n)'
-    xa=0; xb=2;
     h = (xb-xa)/(n+1);  # mesh size
-    alpha = func(xa); beta = func(xb)
-    x = np.linspace(xa, xb, n)
-    if (method == 5):
-        s = odeint(f, alpha, x)
-        sol = s[:,0]
-        return sol, -1
-    A=1; B=2; C=1
-
-    # exact value at a fine mesh
-#    d=0.0025
-#    xe = arange(xa,xb+d,d)
-#    ye = xe.copy()
-#    for i in range(len(xe)):
-#        ye[i] = func(xe[i])
-
+        
     # matrix entry on tri-dialgonals
     coA= A/(h**2) - B/(2*h)
     coB= C-2*A/(h**2)
     coC= A/(h**2) + B/(2*h)
 
-    xh = zeros(n) #x-values
-#    yh = zeros(n) #true y-values at grids
-    sol = zeros(n) #computed y-values at grids
-    r=zeros(n)    #right handside of the equations
+    x = np.zeros(n) #x-values
+    sol = np.zeros(n) #computed y-values at grids
+    r = np.zeros(n)    #right handside of the equations
 
     for i in range(n):
-        xh[i] = (i+1) * h + xa
-#        yh[i] = func(xh[i])
-        r[i] = rfunc(xh[i])
+        x[i] = (i+1) * h + xa
+        r[i] = rfunc(x[i])
     r[0] = r[0] - alpha*coA
     r[n-1] = r[n-1] - beta *coC
-
+    
     if (method == 0):
         # Thomas's algorithm
         # assign values for a,b,c - tridiagonals
-        a=zeros(n);b=zeros(n);c=zeros(n)
+        a = np.zeros(n); b = np.zeros(n); c = np.zeros(n)
         a += coA; b += coB; c += coC
         sol = Thomas(a,b,c,r)
         iteration = -1
@@ -79,7 +47,7 @@ def solve(method, n):
         sol, iteration = Gauss_Seidel(coA, coB, coC, r, n)
     elif(method == 3):
         # Successive over-relaxation
-        wopt = 2/(1+sqrt(1-cos(pi*h)**2)) #optimized omega for tridiagonal system
+        wopt = 2/(1+np.sqrt(1-np.cos(np.pi*h)**2)) #optimized omega for tridiagonal system
         sol, iteration = SOR(coA, coB, coC, r, n, wopt)
     elif(method == 4):
         # Gaussian Elimination:
@@ -94,9 +62,40 @@ def solve(method, n):
         M[n-1,n-1] = coB
         for i in range(n):
             M[i,n] = r[i]
-        sol = gaussElim(M)
+        sol = solvers.gaussElim(M)
         iteration = -1
-    return sol, iteration
+        
+
+    return x, sol, iteration
+
+
+#LU factorization based on Thomas's algorithm
+def Thomas(a,b,c,r):
+    n = len(r)
+    w = np.zeros(n,float)
+    l = np.zeros(n,float)
+    u = np.zeros(n,float)
+    z = np.zeros(n,float)
+    #Determine L,U factors
+    u[0] = b[0]
+    
+    for k in range(1, n):
+        l[k] = a[k]/u[k-1]
+        u[k] = b[k] - l[k]*c[k-1]
+        
+    # Solve Lz = r
+    z[0] = r[0]
+    for k in range(1, n):
+        z[k] = r[k] - l[k]*z[k-1]
+
+    # Solve Uw = z.
+    w[n-1] = z[n-1]/u[n-1]
+    for k in range(n-2,-1,-1):
+        w[k] = (z[k] - c[k]*w[k+1])/u[k]
+        
+        
+    return w
+
 
 def Jacobi(coA, coB, coC, r, n, tol = 1e-8):
     # sol1 and sol are two consequent solutions
@@ -106,7 +105,7 @@ def Jacobi(coA, coB, coC, r, n, tol = 1e-8):
     sol = np.zeros(n)
     iteration = 0
     err = 1
-    while (err>tol):
+    while (err > tol):
         iteration += 1
         #calculation part
         sol[0] = (r[0] - coC * sol1[1])/coB
@@ -114,7 +113,7 @@ def Jacobi(coA, coB, coC, r, n, tol = 1e-8):
             sol[i] = (r[i] - coA * sol1[i-1] - coC * sol1[i+1])/coB
         sol[n-1] = (r[n-1] - coA * sol1[n-2])/coB
         
-        err = max(absolute(sol1-sol))
+        err = max(np.absolute(sol1-sol))
         sol1 = sol.copy()
         
     return sol, iteration
@@ -139,10 +138,11 @@ def Gauss_Seidel(coA, coB, coC, r, n, tol = 1e-8):
             sol[i] = (r[i] - coA * sol[i-1] - coC * sol[i+1])/coB
         sol[n-1] = (r[n-1] - coA * sol[n-2])/coB
         
-        err = max(absolute(sol1-sol))
+        err = max(np.absolute(sol1-sol))
         sol1 = sol.copy()
         
     return sol, iteration
+
 
 def SOR(coA, coB, coC, r, n, wopt, tol = 1e-8):
     # sol1 and sol are two consequent solutions
@@ -163,80 +163,84 @@ def SOR(coA, coB, coC, r, n, wopt, tol = 1e-8):
             sol[i] = (coB*sol[i] + (wopt * (r[i] - coA * sol[i-1] - coB * sol[i] - coC * sol[i+1])))/coB
         sol[n-1] = (r[n-1] - coA * sol[n-2])/coB
         
-        err = max(absolute(sol1-sol))
+        err = max(np.absolute(sol1-sol))
         sol1 = sol.copy()
         
     return sol, iteration 
     
 
-#LU factorization based on Thomas's algorithm
-def Thomas(a,b,c,r):
-    n = len(r)
-    sol = np.zeros(n)
-    for k in range(1, n):
-        q = a[k]/b[k-1]
-        b[k] = b[k] - c[k-1]*q
-        r[k] = r[k] - r[k-1]*q
+def ode_perf(f1, rf1, xa, xb, coeff, n, m, T = True, I = True):
+
+    alpha = f1(xa); beta = f1(xb)
     
-    q = r[n-1]/b[n-1]
-    sol[n-1] = q
+#    d=0.0025; 
+#    xe = np.arange(xa,xb+d,d)
+#    ye = xe.copy()
+#    for i in range(len(xe)):
+#        ye[i] = f1(xe[i])
+    l = []
+    if T == True:
+        time = {}; 
+        for i in m:
+            time[i] = l.copy()
+    if I == True:
+        iteration = {};
+        for i in m:
+            iteration[i] = l.copy()
+
+    for k in range(len(n)):
+        for i in m:
+            start = timer()
+            x, sol,it = solve(i, n[k], rf1, xa, xb, coeff[0], coeff[1], coeff[2], alpha, beta)
+            end = timer()
+#            y = np.zeros(k) #true y-values at grids
+#            y = f1(x)
+#            err = max(np.abs(y-sol))
+            if T == True: time[i].append(end-start)
+            if I == True: iteration[i].append(it)
+        
+    name = {}
+    name[0] = 'Thomas'
+    name[1] = 'Jacobi'
+    name[2] = 'Gauss-Seidel'
+    name[3] = 'SOR'
+    name[4] = 'Gauss-Elimination'
     
-    for k in range(n-2, -1, -1):
-        q = (r[k]-c[k] * q)/ b[k]
-        sol[k] = q
-    return sol
+    linestyle = {}
+    linestyle[0] = 'r-'
+    linestyle[1] = 'b-'
+    linestyle[2] = 'g-'
+    linestyle[3] = 'y-'
+    linestyle[4] = 'c-'
+    if T == True:
+        for i in m:
+            plt.plot(n, time[i], linestyle[i], label = name[i])
+        plt.legend()
+        plt.title('Runtime performance')
+        plt.xlabel('# of data points')
+        plt.ylabel('Runtime(s)')
+        plt.show()
 
-
-# adapted to solve numpy array matrix
-def gaussElim(A):
-    n = len(A)
-    for i in range(0, n):
-        # search for maximum in this column
-        maxEl = abs(A[i,i])
-        maxRow = i
-        for k in range(i + 1, n):
-            if abs(A[k][i]) > maxEl:
-                maxEl = abs(A[k,i])
-                maxRow = k
-                
-        # check if there is any zero on the diagonal
-        if A[i,maxRow] == 0:
-            print('Singular')
-            return None
-
-        # swap maximum row with current row (column by column)
-        for k in range(i, n + 1):
-            tmp = A[maxRow,k]
-            A[maxRow,k] = A[i,k]
-            A[i,k] = tmp
-
-        # make all rows below this one 0 in current column
-        for k in range(i + 1, n):
-            c = -A[k,i] / A[i,i]
-            for j in range(i, n + 1):
-                if i == j:
-                    A[k,j] = 0
-                else:
-                    A[k,j] += c * A[i,j]
-
-    # Solve equation Ax=b for an upper triangular matrix A
-    x = [0 for i in range(n)]
-    for i in range(n - 1, -1, -1):
-        x[i] = A[i,n] / A[i,i]
-        for k in range(i - 1, -1, -1):
-            A[k,n] -= A[k,i] * x[i]
-    return np.transpose(x)
-
-
-if __name__ == "__main__":
-#    solve_demo()
-    print('\n')
-    for i in [0,1,2,3,4]:
-        start = timer()
-        sol,it =solve(i, 5)
-        end = timer()
-        print(i, sol,end - start)
+    if I == True:
+        for i in m:
+            plt.plot(n, iteration[i], linestyle[i], label = name[i])  
+        plt.title('# of iterations comparison')
+        plt.xlabel('# of data points')
+        plt.ylabel('# of iterations')
+        plt.legend()
+        plt.show()
     
+    
+def ode_interface():
+    # f1 is the actual solution to the ode
+    f1 = lambda x: (2*np.exp(1))*x*(np.exp(-x)) - np.exp(x)
+    rf1 = lambda x: -4*(np.exp(x))
+    n = [10,20,30]
+    m = [0,3,4]
+    coeff = [1,2,1]
+    ode_perf(f1, rf1, 0, 2, coeff, n, m, T = True, I = False)
+
+ode_interface()
     
     
     

@@ -8,8 +8,6 @@ Created on Thu Apr 30 17:35:11 2020
 import numpy as np
 import os.path
 import random 
-counter = 0
-
 def generateMatrix(size):
     
     norm = 10
@@ -44,33 +42,33 @@ def generateMatrix(size):
         
         b = -np.dot(np.linalg.inv(d+l), u)
         norm = np.linalg.norm(b)
-        print(norm)
+#        print(norm)
         c += 1
         
-        v = l+d+u
+    v = l+d+u
 
     return v
         
 
-def writeFile(size, counter, save_path = '/Users/yongjiaxu/Desktop/CS3353/Program4/temp'):
+def writeFile(size, save_path = '/Users/yongjiaxu/Desktop/CS3353/Program4/temp'):
+    completeName = os.path.join(save_path, "{}.txt".format(size))         
     
-    completeName = os.path.join(save_path, "{}_{}.txt".format(size, counter))         
+    file = open(completeName, "w")
     
-    file1 = open(completeName, "w")
-    
-    file1.write(str(size))
-    file1.write('\n')
+    file.write(str(size))
+    file.write('\n')
 
     v = generateMatrix(size)
+    
     for i in range(size):
         for j in range(size):
-            file1.write(str(v[i][j])+' ')
+            file.write(str(v[i][j])+' ')
         x = random.random()
-        file1.write(str(x))
-        file1.write('\n')
+        file.write(str(x))
+        file.write('\n')
 
-    file1.close()
-    
+    file.close()
+        
     
         
     

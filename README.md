@@ -22,16 +22,11 @@
     3
     4 1 2 4
     3 5 1 7
-    1 1 3 3
-    </pre>
+    1 1 3 3</pre>
     This represents the linear problem:
-    $$[\begin{array}
-    {rrr}
-    4 & 1 & 2 \\
-    3 & 5 & 1 \\
-    1 & 1 & 1
-    \end{array}\right]
-    $$
     <pre>
-
+    [4 1 2] [x1]   [4]
+    [3 5 1] [x2] = [7]
+    [1 1 3] [x3]   [3]
+    </pre>
 

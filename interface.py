@@ -56,6 +56,7 @@ def solve_single_matrix(path):
     
     return solGE, solGS, c, GEt, GSt, scipyT, size
 
+
 def general_test(path = '/Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project4/matrices0'):
     s = []; GEtime = {}; GStime = {}; scipyTime = {}   
     files = [f for f in glob.glob(path + "**/*.txt", recursive=True)]
@@ -87,8 +88,8 @@ def general_test(path = '/Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project
     plt.title('GE vs GS vs Scipy')
 #    plt.savefig('GEvsGSvsScipy.png')
     plt.show()
+    
     return
-
 
 
 if __name__ == "__main__":
@@ -110,7 +111,6 @@ if __name__ == "__main__":
         print('-------------------------------------------------------------------------------')
         print('1. Run generate test (Gaussian Elimination vs Gauss-Seidel)')
         print('2. Run special numerical problem - second order ordinary differential equation')
-        print('3. Solve linear equations')
         print('-------------------------------------------------------------------------------')
         
         option = input('Your option: ')
@@ -171,7 +171,7 @@ if __name__ == "__main__":
             
                     m = []
                     print('Please choose solving method; press E to stop entering')
-                    print('0 - Thomas\' algorithm')
+                    print('0 - Thomas algorithm')
                     print('1 - Jacobi iterative method')
                     print('2 - Gauss-Seidel iterative method')
                     print('3 - Successive over-relaxation (SOR)')
@@ -227,25 +227,12 @@ if __name__ == "__main__":
                             
                     ode_2nd.ode_interface(s1, rf1, xa1, xb1, coeff1, n = n, m = m, T = tDisplay, I = iDisplay, E = eDisplay)
                     break;
-    
-        elif (option == '3'):
-            path = input('Please enter the path to your matrix file: ')
-            solGE, solGS, c, GEt, GSt, scipyT, size = solve_single_matrix(path)
-            print('Solutions:')
-            print ('Gauss Elimination: {}'.format(solGE))
-            print ('Gauss-Seidel: {}'.format(solGS))
-            print ('Scipy: {}'.format(c))
-    
-            print('Runtime:')        
-            print ('Gauss Elimination: ', GEt)
-            print ('Gauss-Seidel: ',GSt)
-            print ('Scipy: ',scipyT)
             
             
             
-        #generate converging matrix for gauss seidel
+        # generate converging matrix for gauss seidel
         # hidden option - for 'maintenence' purpose
-        elif (option == '4'):
+        elif (option == '3'):
             size = input('Please enter your matrix size: ')
             save_path = input('Please enter your saving path: ')
             matGenerator.writeFile(size, save_path)

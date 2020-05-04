@@ -9,7 +9,6 @@ import numpy as np
 import os.path
 import random 
 def generateMatrix(size):
-    
     norm = 10
     c = 0
     while(norm >=1):

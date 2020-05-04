@@ -226,6 +226,7 @@ def ode_perf(s, rf, xa, xb, coeff, n, m, T, I, E):
         plt.title('# of iterations comparison')
         plt.xlabel('# of data points')
         plt.ylabel('# of iterations')
+        plt.ylim(ymin = 0)
         plt.legend()
         plt.show()
         

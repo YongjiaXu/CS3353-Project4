@@ -97,140 +97,140 @@ if __name__ == "__main__":
     print('3. Solve linear equations')
     print('-------------------------------------------------------------------------------')
     
-#    option = input('Your option: ')
-#    
-#    if(option == '1'):
-#        # Part I: general matrix solving
-#        print('Do you want to use default or customized test (D/C)')
-#        while(True):
-#            s = input('Your choice: ')
-#            if (s == 'c') | (s == 'C'):
-#                path = input('Please enter your directory: ')
-#                general_test(path)
-#                break;
-#            elif (s == 'd') | (s == 'D'):
-#                print('Using default path...')
-#                general_test()
-#                break;
-#        
-#    elif (option == '2'):
-#        # Part II: a specific numerical problem: 2nd order differential equation
-#        # Ay'' + By' + C = r(x); y(a) = alpha; y(b) = beta; 
-#        # Requirement: analytical solution: s1; right hand side: r(x); coefficients [A B C];
-#        #  endpoints xa, xb
-#        
-#        s1 = lambda x: (2*np.exp(1))*x*(np.exp(-x)) - np.exp(x)
-#        rf1 = lambda x: -4*(np.exp(x))
-#        xa1 = 0; xb1 = 2; coeff1 = [1,2,1]
-#        
-#
-#        # ode_interface() requires arguments: initial values of the ode: s, rf, xa, xb, coeff
-#        # it also has default arguments: n, m, T, I, E
-#        # n - data points; m - methods; T - display runtim; I - display # of iterations; E - error
-#        # default settings are n = [10,20,30]
-#        
-#        print('Do you want to use default or customized test (D/C)')
-#        while(True):
-#            c = input('Your choice: ')
-#            
-#            if ( c =='D') | (c =='d'):
-#                ode_2nd.ode_interface(s1, rf1, xa1, xb1, coeff1)
-#                break;
-#            elif (c == 'C') | (c == 'c'):
-#                n = []
-#                print('Please enter a list of desired data points; press E to stop entering')
-#                while(True):
-#                    s = input('Please enter a number of data points: ')
-#                    if((s == 'e') | (s == 'E')):
-#                        break;
-#                    try:
-#                        int(s)
-#                    except ValueError:
-#                        print('Please enter an integer')
-#                        continue
-#                    if (s in n):
-#                        print('{} is already chosen'.format(s))
-#                        continue
-#                    n.append(int(s))
-#        
-#                m = []
-#                print('Please choose solving method; press E to stop entering')
-#                print('0 - Thomas\' algorithm')
-#                print('1 - Jacobi iterative method')
-#                print('2 - Gauss-Seidel iterative method')
-#                print('3 - Successive over-relaxation (SOR)')
-#                print('4 - Gaussian Elimination')
-#                while(True):
-#                    s = input('Please choose your method: ')
-#                    if((s == 'e') | (s == 'E')):
-#                        break
-#                    try:
-#                        int(s)
-#                    except ValueError:
-#                        print('Please enter an integer.')
-#                        continue
-#                    x = int(s)
-#                    if (x < 0) & (x > 4):
-#                        print('You chose {}'.format(x))
-#                        print('Please choose a valid method.')
-#                        continue
-#                    if (x in m):
-#                        print('{} is already chosen.'.format(x))
-#                        continue
-#                    m.append(int(s))  
-#                
-#                tDisplay = True
-#                iDisplay = True
-#                eDisplay = True
-#                print('Do you want to display runtime performance?')
-#                while (True):
-#                    s = input('Yes or No (Y/N): ')
-#                    if (s == 'y') | (s == 'Y') | (s == 'yes') | (s == 'Yes'):
-#                        break;
-#                    elif (s == 'n') | (s == 'N') | (s == 'no') | (s == 'No'):
-#                        tDisplay = False
-#                        break;
-#
-#                print('Do you want to display # of iterations(only for Jacobi, Gauss-Seidel, and SOR)?')
-#                while (True):
-#                    s = input('Yes or No (Y/N): ')
-#                    if (s == 'y') | (s == 'Y') | (s == 'yes') | (s == 'Yes'):
-#                        break;
-#                    elif (s == 'n') | (s == 'N') | (s == 'no') | (s == 'No'):
-#                        iDisplay = False
-#                        break;
-#
-#                print('Do you want to display error between real values and numerical solutions?')
-#                while (True):
-#                    s = input('Yes or No (Y/N): ')
-#                    if (s == 'y') | (s == 'Y') | (s == 'yes') | (s == 'Yes'):
-#                        break;
-#                    elif (s == 'n') | (s == 'N') | (s == 'no') | (s == 'No'):
-#                        eDisplay = False
-#                        break;
-#                        
-#                ode_2nd.ode_interface(s1, rf1, xa1, xb1, coeff1, n = n, m = m, T = tDisplay, I = iDisplay, E = eDisplay)
-#                break;
-#
-#    elif (option == '3'):
-#        path = input('Please enter the path to your matrix file:')
-#        solGE, solGS, c, GEt, GSt, scipyT, size = solve_single_matrix(path)
-#        print('Solutions:')
-#        print ('Gauss Elimination: {}'.format(solGE))
-#        print ('Gauss-Seidel: {}'.format(solGS))
-#        print ('Scipy: {}'.format(c))
-#
-#        print('Runtime:')        
-#        print ('Gauss Elimination: ', GEt)
-#        print ('Gauss-Seidel: ',GSt)
-#        print ('Scipy: ',scipyT)
-#        
-#    #generate converging matrix for gauss seidel
-#    # hidden option - for 'maintenence' purpose
-#    elif (option == '4'):
-#        size = input('Please enter your matrix size: ')
-#        save_path = input('Please enter your saving path: ')
-#        matGenerator.writeFile(size, save_path)
+    option = input('Your option: ')
+    
+    if(option == '1'):
+        # Part I: general matrix solving
+        print('Do you want to use default or customized test (D/C)')
+        while(True):
+            s = input('Your choice: ')
+            if (s == 'c') | (s == 'C'):
+                path = input('Please enter your directory: ')
+                general_test(path)
+                break;
+            elif (s == 'd') | (s == 'D'):
+                print('Using default path...')
+                general_test()
+                break;
+        
+    elif (option == '2'):
+        # Part II: a specific numerical problem: 2nd order differential equation
+        # Ay'' + By' + C = r(x); y(a) = alpha; y(b) = beta; 
+        # Requirement: analytical solution: s1; right hand side: r(x); coefficients [A B C];
+        #  endpoints xa, xb
+        
+        s1 = lambda x: (2*np.exp(1))*x*(np.exp(-x)) - np.exp(x)
+        rf1 = lambda x: -4*(np.exp(x))
+        xa1 = 0; xb1 = 2; coeff1 = [1,2,1]
+        
+
+        # ode_interface() requires arguments: initial values of the ode: s, rf, xa, xb, coeff
+        # it also has default arguments: n, m, T, I, E
+        # n - data points; m - methods; T - display runtim; I - display # of iterations; E - error
+        # default settings are n = [10,20,30]
+        
+        print('Do you want to use default or customized test (D/C)')
+        while(True):
+            c = input('Your choice: ')
+            
+            if ( c =='D') | (c =='d'):
+                ode_2nd.ode_interface(s1, rf1, xa1, xb1, coeff1)
+                break;
+            elif (c == 'C') | (c == 'c'):
+                n = []
+                print('Please enter a list of desired data points; press E to stop entering')
+                while(True):
+                    s = input('Please enter a number of data points: ')
+                    if((s == 'e') | (s == 'E')):
+                        break;
+                    try:
+                        int(s)
+                    except ValueError:
+                        print('Please enter an integer')
+                        continue
+                    if (s in n):
+                        print('{} is already chosen'.format(s))
+                        continue
+                    n.append(int(s))
+        
+                m = []
+                print('Please choose solving method; press E to stop entering')
+                print('0 - Thomas\' algorithm')
+                print('1 - Jacobi iterative method')
+                print('2 - Gauss-Seidel iterative method')
+                print('3 - Successive over-relaxation (SOR)')
+                print('4 - Gaussian Elimination')
+                while(True):
+                    s = input('Please choose your method: ')
+                    if((s == 'e') | (s == 'E')):
+                        break
+                    try:
+                        int(s)
+                    except ValueError:
+                        print('Please enter an integer.')
+                        continue
+                    x = int(s)
+                    if (x < 0) & (x > 4):
+                        print('You chose {}'.format(x))
+                        print('Please choose a valid method.')
+                        continue
+                    if (x in m):
+                        print('{} is already chosen.'.format(x))
+                        continue
+                    m.append(int(s))  
+                
+                tDisplay = True
+                iDisplay = True
+                eDisplay = True
+                print('Do you want to display runtime performance?')
+                while (True):
+                    s = input('Yes or No (Y/N): ')
+                    if (s == 'y') | (s == 'Y') | (s == 'yes') | (s == 'Yes'):
+                        break;
+                    elif (s == 'n') | (s == 'N') | (s == 'no') | (s == 'No'):
+                        tDisplay = False
+                        break;
+
+                print('Do you want to display # of iterations(only for Jacobi, Gauss-Seidel, and SOR)?')
+                while (True):
+                    s = input('Yes or No (Y/N): ')
+                    if (s == 'y') | (s == 'Y') | (s == 'yes') | (s == 'Yes'):
+                        break;
+                    elif (s == 'n') | (s == 'N') | (s == 'no') | (s == 'No'):
+                        iDisplay = False
+                        break;
+
+                print('Do you want to display error between real values and numerical solutions?')
+                while (True):
+                    s = input('Yes or No (Y/N): ')
+                    if (s == 'y') | (s == 'Y') | (s == 'yes') | (s == 'Yes'):
+                        break;
+                    elif (s == 'n') | (s == 'N') | (s == 'no') | (s == 'No'):
+                        eDisplay = False
+                        break;
+                        
+                ode_2nd.ode_interface(s1, rf1, xa1, xb1, coeff1, n = n, m = m, T = tDisplay, I = iDisplay, E = eDisplay)
+                break;
+
+    elif (option == '3'):
+        path = input('Please enter the path to your matrix file:')
+        solGE, solGS, c, GEt, GSt, scipyT, size = solve_single_matrix(path)
+        print('Solutions:')
+        print ('Gauss Elimination: {}'.format(solGE))
+        print ('Gauss-Seidel: {}'.format(solGS))
+        print ('Scipy: {}'.format(c))
+
+        print('Runtime:')        
+        print ('Gauss Elimination: ', GEt)
+        print ('Gauss-Seidel: ',GSt)
+        print ('Scipy: ',scipyT)
+        
+    #generate converging matrix for gauss seidel
+    # hidden option - for 'maintenence' purpose
+    elif (option == '4'):
+        size = input('Please enter your matrix size: ')
+        save_path = input('Please enter your saving path: ')
+        matGenerator.writeFile(size, save_path)
 
         
         

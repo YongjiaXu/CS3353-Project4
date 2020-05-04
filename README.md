@@ -31,7 +31,7 @@
 
 
 - Video demo is run on JupyterNote book; .ipynb files are just for demo purpose
-- Environment: conda 4.7.12 Python 3.7.4 spyder==3.3.6
+- Environment: conda 4.7.12    Python 3.7.4    spyder==3.3.6
 - Jupyter env<br>
   jupyter core     : 4.5.0<br>
   jupyter-notebook : 6.0.1<br>

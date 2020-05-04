@@ -16,7 +16,7 @@
 - Press 2 to Run special numerical problem - second order ordinary differential equation
     - This option allows you to choose different methods among the five. Also you are allowed to change the data points to see different performances.
 
-## Matrix file##
+## Matrix file
 - Matrix files are all .txt file with the size on the first line and a combined nx(n+1) matrix. File name represents the size n.
     <pre> Ex: 3.txt
     3
@@ -30,3 +30,4 @@
     [1 1 3] [x3]   [3]
     </pre>
 
+- Environment: conda 4.7.12 Python 3.7.4 spyder==3.3.6

@@ -94,8 +94,17 @@ def general_test(path = '/Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project
 if __name__ == "__main__":
     
     if(len(argv) == 2):
-        print('For general matrix, Gaussian Elimination is actually better than Gauss-Seidel.')
-        print('Plus, it can also work on all non-singular matrix. However, Gauss-Seidel has limitations.')
+        path = argv[1]
+        solGE, solGS, c, GEt, GSt, scipyT, size = solve_single_matrix(path)
+        print('Solutions:')
+        print ('Gauss Elimination: {}'.format(solGE))
+        print ('Gauss-Seidel: {}'.format(solGS))
+        print ('Scipy: {}'.format(c))
+
+        print('Runtime:')        
+        print ('Gauss Elimination: ', GEt)
+        print ('Gauss-Seidel: ',GSt)
+        print ('Scipy: ',scipyT)
     
     else:
         print('-------------------------------------------------------------------------------')

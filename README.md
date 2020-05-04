@@ -27,21 +27,20 @@
     <pre>
     [4 1 2] [x1]   [4]
     [3 5 1] [x2] = [7]
-    [1 1 3] [x3]   [3]
-    </pre>
+    [1 1 3] [x3]   [3]</pre>
 
 
 - Video demo is run on JupyterNote book; .ipynb files are just for demo purpose
 - Environment: conda 4.7.12 Python 3.7.4 spyder==3.3.6
-- Jupyter env
-  jupyter core     : 4.5.0
-  jupyter-notebook : 6.0.1
-  qtconsole        : 4.5.5
-  ipython          : 7.8.0
-  ipykernel        : 5.1.2
-  jupyter client   : 5.3.3
-  jupyter lab      : 1.1.4
-  nbconvert        : 5.6.0
-  ipywidgets       : 7.5.1
-  nbformat         : 4.4.0
-  traitlets        : 4.3.3
+- Jupyter env<br>
+  jupyter core     : 4.5.0<br>
+  jupyter-notebook : 6.0.1<br>
+  qtconsole        : 4.5.5<br>
+  ipython          : 7.8.0<br>
+  ipykernel        : 5.1.2<br>
+  jupyter client   : 5.3.3<br>
+  jupyter lab      : 1.1.4<br>
+  nbconvert        : 5.6.0<br>
+  ipywidgets       : 7.5.1<br>
+  nbformat         : 4.4.0<br>
+  traitlets        : 4.3.3<br>

@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import scipy.linalg as linalg 
 import numpy as np
 from timeit import default_timer as timer
-from sys import argc
+from sys import argv
 import matGenerator
 import glob
 import solvers
@@ -93,7 +93,7 @@ def general_test(path = '/Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project
 
 if __name__ == "__main__":
     
-    if(len(argc) == 2):
+    if(len(argv) == 2):
         print('For general matrix, Gaussian Elimination is actually better than Gauss-Seidel.')
         print('Plus, it can also work on all non-singular matrix. However, Gauss-Seidel has limitations.')
     

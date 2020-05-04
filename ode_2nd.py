@@ -188,11 +188,8 @@ def ode_perf(s, rf, xa, xb, coeff, n, m, T, I, E):
     for k in range(len(n)):
         for i in m:
             start = timer()
-            x, sol,it = solve(i, n[k], rf, xa, xb, coeff[0], coeff[1], coeff[2], alpha, beta)
+            x, sol, it = solve(i, n[k], rf, xa, xb, coeff[0], coeff[1], coeff[2], alpha, beta)
             end = timer()
-#            y = np.zeros(k) #true y-values at grids
-#            y = f1(x)
-#            err = max(np.abs(y-sol))
             if T == True: time[i].append(end-start)
             if I == True: iteration[i].append(it)
             if E == True: y = s(x);  err = max(np.abs(y-sol)); error[i].append(err)
@@ -212,15 +209,18 @@ def ode_perf(s, rf, xa, xb, coeff, n, m, T, I, E):
     linestyle[4] = 'c-'
     
     if T == True:
+        fig = plt.figure()
         for i in m:
             plt.plot(n, time[i], linestyle[i], lw = 1, markersize = 2.5, label = name[i])
         plt.legend()
         plt.title('Runtime performance')
         plt.xlabel('# of data points')
         plt.ylabel('Runtime(s)')
+        plt.savefig('Runtime_'+ str(n[0]) + '_' + str(n[-1]) + '.png')
         plt.show()
 
     if I == True:
+        fig = plt.figure()
         for i in m:
             plt.plot(n, iteration[i], linestyle[i], lw = 1, markersize = 2.5, label = name[i])  
         plt.title('# of iterations comparison')
@@ -228,15 +228,18 @@ def ode_perf(s, rf, xa, xb, coeff, n, m, T, I, E):
         plt.ylabel('# of iterations')
         plt.ylim(ymin = 0)
         plt.legend()
+        plt.savefig('Iterations_'+ str(n[0]) + '_' + str(n[-1]) + '.png')
         plt.show()
         
     if E == True:
+        fig = plt.figure()
         for i in m:
             plt.semilogy(n, error[i], linestyle[i], lw = 1, markersize = 2.5, label = name[i])  
         plt.title('Error comparison')
         plt.xlabel('# of data points')
         plt.ylabel('Error')
         plt.legend()
+        plt.savefig('Error_'+ str(n[0]) + '_' + str(n[-1]) + '.png')
         plt.show()
     
     
@@ -245,12 +248,30 @@ def ode_interface(s, rf, xa, xb, coeff, n = [10,20,30], m = [0,1,2,3,4], T = Tru
     ode_perf(s, rf, xa, xb, coeff, n, m, T, I, E)
 
 
+def solution_demo(s, rf, xa, xb, coeff, n, m):
+    # exact value at a fine mesh
+    d=0.0025
+    xe = np.arange(xa,xb+d,d)
+    ye = xe.copy()
+    for i in range(len(xe)):
+        ye[i] = s(xe[i])
+        
+    alpha = s(xa); beta = s(xb)   
+    x, sol, it = solve(m, n, rf, xa, xb, coeff[0], coeff[1], coeff[2], alpha, beta) 
+    
+    
+    fig = plt.figure()
+    plt.plot(xe, ye, 'b-', label = 'real value')
+    plt.plot(x, sol, 'ko', markersize = 3, label = 'data points')
+    plt.show()
+
 ## f1 is the actual solution to the ode
 #s1 = lambda x: (2*np.exp(1))*x*(np.exp(-x)) - np.exp(x)
 #rf1 = lambda x: -4*(np.exp(x))
 #xa = 0; xb = 2;
-#ode_interface(s1, rf1, xa, xb, n = [200,225,250], T = False, I = False)
-    
+#coeff = [1,2,1]
+#n = [75,100,125,150,175,200,225,250,300,325,350,375,400,425,450]
+#ode_interface(s1, rf1, xa, xb, coeff, n, T = False, I = False, E = True)
     
     
     

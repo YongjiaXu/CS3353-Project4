@@ -79,6 +79,7 @@ def general_test(path = '/Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project
         scipyy.append(scipyTime[i])
 
     # plot the data
+    fig = plt.figure()
     plt.plot(s, GEy, '-*', markersize = 5, label = 'GE')
     plt.plot(s, GSy, '-x', markersize = 5, label = 'GS')
     plt.plot(s, scipyy, '-o', markersize = 3, label = 'scipy')

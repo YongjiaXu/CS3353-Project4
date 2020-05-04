@@ -216,7 +216,7 @@ def ode_perf(s, rf, xa, xb, coeff, n, m, T, I, E):
         plt.title('Runtime performance')
         plt.xlabel('# of data points')
         plt.ylabel('Runtime(s)')
-        plt.savefig('Runtime_'+ str(n[0]) + '_' + str(n[-1]) + '.png')
+#        plt.savefig('Runtime_'+ str(n[0]) + '_' + str(n[-1]) + '.png')
         plt.show()
 
     if I == True:
@@ -228,7 +228,7 @@ def ode_perf(s, rf, xa, xb, coeff, n, m, T, I, E):
         plt.ylabel('# of iterations')
         plt.ylim(ymin = 0)
         plt.legend()
-        plt.savefig('Iterations_'+ str(n[0]) + '_' + str(n[-1]) + '.png')
+#        plt.savefig('Iterations_'+ str(n[0]) + '_' + str(n[-1]) + '.png')
         plt.show()
         
     if E == True:
@@ -239,11 +239,11 @@ def ode_perf(s, rf, xa, xb, coeff, n, m, T, I, E):
         plt.xlabel('# of data points')
         plt.ylabel('Error')
         plt.legend()
-        plt.savefig('Error_'+ str(n[0]) + '_' + str(n[-1]) + '.png')
+#        plt.savefig('Error_'+ str(n[0]) + '_' + str(n[-1]) + '.png')
         plt.show()
     
     
-def ode_interface(s, rf, xa, xb, coeff, n = [10,20,30], m = [0,1,2,3,4], T = True, I = True, E = True):
+def ode_interface(s, rf, xa, xb, coeff, n = [10,20,30,40,50], m = [0,1,2,3,4], T = True, I = True, E = True):
     
     ode_perf(s, rf, xa, xb, coeff, n, m, T, I, E)
 
@@ -266,14 +266,15 @@ def solution_demo(s, rf, xa, xb, coeff, n, m):
     plt.show()
 
 ## f1 is the actual solution to the ode
-#s1 = lambda x: (2*np.exp(1))*x*(np.exp(-x)) - np.exp(x)
-#rf1 = lambda x: -4*(np.exp(x))
-#xa = 0; xb = 2;
-#coeff = [1,2,1]
-#n = [75,100,125,150,175,200,225,250,300,325,350,375,400,425,450]
-#ode_interface(s1, rf1, xa, xb, coeff, n, T = False, I = False, E = True)
+s1 = lambda x: (2*np.exp(1))*x*(np.exp(-x)) - np.exp(x)
+rf1 = lambda x: -4*(np.exp(x))
+xa = 0; xb = 2;
+coeff = [1,2,1]
+n = [10,20,30,40,50]
+ode_interface(s1, rf1, xa, xb, coeff, n)
     
-    
+# for i in [10,25,100]:
+#     solution_demo(s1, rf1, xa, xb, coeff, i, 0)
     
     
     

@@ -95,6 +95,7 @@ if __name__ == "__main__":
     print('1. Run generate test (Gaussian Elimination vs Gauss-Seidel)')
     print('2. Run special numerical problem - second order ordinary differential equation')
     print('3. Solve linear equations')
+    print('4. Print conclusion')
     print('-------------------------------------------------------------------------------')
     
     option = input('Your option: ')
@@ -213,7 +214,7 @@ if __name__ == "__main__":
                 break;
 
     elif (option == '3'):
-        path = input('Please enter the path to your matrix file:')
+        path = input('Please enter the path to your matrix file: ')
         solGE, solGS, c, GEt, GSt, scipyT, size = solve_single_matrix(path)
         print('Solutions:')
         print ('Gauss Elimination: {}'.format(solGE))
@@ -225,12 +226,17 @@ if __name__ == "__main__":
         print ('Gauss-Seidel: ',GSt)
         print ('Scipy: ',scipyT)
         
+    elif (option == '4'):
+        print('For general matrix, Gaussian Elimination is actually better than Gauss-Seidel.')
+        print('Plus, it can also work on all non-singular matrix. However, Gauss-Seidel has limitations.')
+        
     #generate converging matrix for gauss seidel
     # hidden option - for 'maintenence' purpose
-    elif (option == '4'):
+    elif (option == '5'):
         size = input('Please enter your matrix size: ')
         save_path = input('Please enter your saving path: ')
         matGenerator.writeFile(size, save_path)
+        
 
         
         

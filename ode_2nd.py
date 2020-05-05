@@ -9,7 +9,6 @@ Created on Sat May  2 19:00:01 2020
 import numpy as np
 import matplotlib.pyplot as plt
 from timeit import default_timer as timer
-from scipy.integrate import odeint
 import solvers
 
 def solve(method, n, rfunc, xa, xb, A, B, C, alpha, beta):
@@ -259,19 +258,19 @@ def solution_demo(s, rf, xa, xb, coeff, n, m):
     alpha = s(xa); beta = s(xb)   
     x, sol, it = solve(m, n, rf, xa, xb, coeff[0], coeff[1], coeff[2], alpha, beta) 
     
-    
     fig = plt.figure()
     plt.plot(xe, ye, 'b-', label = 'real value')
     plt.plot(x, sol, 'ko', markersize = 3, label = 'data points')
     plt.show()
 
 ## f1 is the actual solution to the ode
-s1 = lambda x: (2*np.exp(1))*x*(np.exp(-x)) - np.exp(x)
-rf1 = lambda x: -4*(np.exp(x))
-xa = 0; xb = 2;
-coeff = [1,2,1]
-n = [10,20,30,40,50]
-ode_interface(s1, rf1, xa, xb, coeff, n)
+#s1 = lambda x: (2*np.exp(1))*x*(np.exp(-x)) - np.exp(x)
+#rf1 = lambda x: -4*(np.exp(x))
+#xa = 0; xb = 2;
+#coeff = [1,2,1]
+#
+#n = [10,20,30,40,50]
+#ode_interface(s1, rf1, xa, xb, coeff, n)
     
 # for i in [10,25,100]:
 #     solution_demo(s1, rf1, xa, xb, coeff, i, 0)

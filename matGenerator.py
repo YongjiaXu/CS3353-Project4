@@ -51,7 +51,6 @@ def generateMatrix(size):
 
 def writeFile(size, save_path = '/Users/yongjiaxu/Desktop/CS3353/Program4/temp'):
     completeName = os.path.join(save_path, "{}.txt".format(size))         
-    
     file = open(completeName, "w")
     
     file.write(str(size))
@@ -69,16 +68,4 @@ def writeFile(size, save_path = '/Users/yongjiaxu/Desktop/CS3353/Program4/temp')
     file.close()
         
     
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+            

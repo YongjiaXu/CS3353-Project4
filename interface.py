@@ -57,7 +57,7 @@ def solve_single_matrix(path):
     return solGE, solGS, c, GEt, GSt, scipyT, size
 
 
-def general_test(path = '/Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project4/matrices0'):
+def general_test(path = '/Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project4/small'):
     s = []; GEtime = {}; GStime = {}; scipyTime = {}   
     files = [f for f in glob.glob(path + "**/*.txt", recursive=True)]
     for f in files:
@@ -95,28 +95,31 @@ def general_test(path = '/Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project
 
 if __name__ == "__main__":
     
-    if(len(argv) == 2):
-        path = argv[1]
-        solGE, solGS, c, GEt, GSt, scipyT, size = solve_single_matrix(path)
-        print('Solutions:')
-        print ('Gauss Elimination: {}'.format(solGE))
-        print ('Gauss-Seidel: {}'.format(solGS))
-        print ('Scipy: {}'.format(c))
-
-        print('Runtime:')        
-        print ('Gauss Elimination: ', GEt)
-        print ('Gauss-Seidel: ',GSt)
-        print ('Scipy: ',scipyT)
     
-    else:
-        print('-------------------------------------------------------------------------------')
-        print('1. Run generate test (Gaussian Elimination vs Gauss-Seidel)')
-        print('2. Run special numerical problem - second order ordinary differential equation')
-        print('-------------------------------------------------------------------------------')
-        
-        option = input('Your option: ')
+    print('-------------------------------------------------------------------------------')
+    print('1. Solve a system of linear equations (Gaussian ELimination & Gauss-Seidel)')
+    print('2. Run generate test (Gaussian Elimination vs Gauss-Seidel)')
+    print('3. Run special numerical problem - second order ordinary differential equation')
+    print('-------------------------------------------------------------------------------')
+    
+    while(True):
+    
+        option = input('Your MENU option: ')
         
         if(option == '1'):
+            path = input('Enter your path to file: ')
+            solGE, solGS, c, GEt, GSt, scipyT, size = solve_single_matrix(path)
+            print('Solutions:')
+            print ('Gauss Elimination: {}'.format(solGE))
+            print ('Gauss-Seidel: {}'.format(solGS))
+            print ('Scipy: {}'.format(c))
+        
+            print('Runtime:')        
+            print ('Gauss Elimination: ', GEt)
+            print ('Gauss-Seidel: ',GSt)
+            print ('Scipy: ',scipyT)
+        
+        if(option == '2'):
             # Part I: general matrix solving
             print('Do you want to use default or customized test (D/C)')
             while(True):
@@ -130,7 +133,7 @@ if __name__ == "__main__":
                     general_test()
                     break;
             
-        elif (option == '2'):
+        elif (option == '3'):
             # Part II: a specific numerical problem: 2nd order differential equation
             # Ay'' + By' + C = r(x); y(a) = alpha; y(b) = beta; 
             # Requirement: analytical solution: s1; right hand side: r(x); coefficients [A B C];
@@ -230,13 +233,17 @@ if __name__ == "__main__":
                     break;
             
             
-            
         # generate converging matrix for gauss seidel
         # hidden option - for 'maintenence' purpose
-        elif (option == '3'):
+        elif (option == '4'):
             size = input('Please enter your matrix size: ')
             save_path = input('Please enter your saving path: ')
             matGenerator.writeFile(size, save_path)
+
+        elif ((option == 'e' )| (option == 'E')):
+            break;            
+        else:
+            print('Please enter a valid option.')
         
 
         

@@ -114,6 +114,7 @@ if __name__ == "__main__":
         print('1. Solve a system of linear equations (Gaussian ELimination & Gauss-Seidel)')
         print('2. Run generate test (Gaussian Elimination vs Gauss-Seidel)')
         print('3. Run special numerical problem - second order ordinary differential equation')
+        print('E. Exit')
         print('-------------------------------------------------------------------------------')
         
         while(True):
@@ -133,7 +134,7 @@ if __name__ == "__main__":
                 print ('Gauss-Seidel: ',GSt, 's')
                 print ('Scipy: ',scipyT, 's')
             
-            if(option == '2'):
+            elif(option == '2'):
                 # Part I: general matrix solving
                 print('Do you want to use default or customized test (D/C)')
                 while(True):
@@ -249,13 +250,15 @@ if __name__ == "__main__":
                 
             # generate converging matrix for gauss seidel
             # hidden option - for 'maintenence' purpose
-            elif (option == '4'):
+            elif (option == 'm'):
                 size = input('Please enter your matrix size: ')
                 save_path = input('Please enter your saving path: ')
                 matGenerator.writeFile(size, save_path)
     
-            elif ((option == 'e' )| (option == 'E')):
+            elif ((option == 'e' )| (option == 'E')|(option == '4')):
+                print('Exiting...')
                 break;            
+                
             else:
                 print('Please enter a valid option.')
     

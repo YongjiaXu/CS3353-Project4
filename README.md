@@ -13,6 +13,7 @@
     - Under this option, you can input a directory that contains all the matrix files and a plot will be generated to show the performances.
 - Press 3 to Run special numerical problem - second order ordinary differential equation
     - This option allows you to choose different methods among the five. Also you are allowed to change the data points to see different performances.
+- Press E to exit
 
 ## Matrix file
 - Matrix files are all .txt file with the size on the first line and a combined nx(n+1) matrix. File name represents the size n.
@@ -27,7 +28,8 @@
     [3 5 1] [x2] = [7]
     [1 1 3] [x3]   [3]</pre>
 
-- Environment: conda 4.7.12    Python 3.7.4    spyder==3.3.6
+- Environment: conda 4.7.12    Python 3.7.4    IDE:  spyder==3.3.6
+
 - Video uses Jupyter Notebook for demo<br>
   jupyter core     : 4.5.0<br>
   jupyter-notebook : 6.0.1<br>
@@ -40,4 +42,5 @@
   ipywidgets       : 7.5.1<br>
   nbformat         : 4.4.0<br>
   traitlets        : 4.3.3<br>
-- extra installation: <pre> pip install import_ipynb </pre>
+- extra import: <pre>import import_ipynb</pre>i
+- extra nstallation: <pre> pip install import_ipynb </pre>

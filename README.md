@@ -28,9 +28,9 @@
     [3 5 1] [x2] = [7]
     [1 1 3] [x3]   [3]</pre>
 
-- Environment: conda 4.7.12    Python 3.7.4    IDE:  spyder==3.3.6
+- Environment: $\;\;$conda 4.7.12 $\;\;$   Python 3.7.4 $\;\;$   IDE:  spyder==3.3.6
 
-- Video link:    https://www.dropbox.com/s/cdz2j3t4o7hnec7/Program4-demo.mp4?dl=0
+- Video link:  $\;\;$  https://www.dropbox.com/s/cdz2j3t4o7hnec7/Program4-demo.mp4?dl=0
 - Video uses Jupyter Notebook for demo<br>
   jupyter core     : 4.5.0<br>
   jupyter-notebook : 6.0.1<br>

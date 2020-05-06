@@ -110,15 +110,14 @@ if __name__ == "__main__":
         print ('Scipy: ',scipyT, 's')
             
     else:
-        print('-------------------------------------------------------------------------------')
-        print('1. Solve a system of linear equations (Gaussian ELimination & Gauss-Seidel)')
-        print('2. Run generate test (Gaussian Elimination vs Gauss-Seidel)')
-        print('3. Run special numerical problem - second order ordinary differential equation')
-        print('E. Exit')
-        print('-------------------------------------------------------------------------------')
-        
         while(True):
-        
+            print('-------------------------------------------------------------------------------')
+            print('1. Solve a system of linear equations (Gaussian ELimination & Gauss-Seidel)')
+            print('2. Run generate test (Gaussian Elimination vs Gauss-Seidel)')
+            print('3. Run special numerical problem - second order ordinary differential equation')
+            print('E. Exit')
+            print('-------------------------------------------------------------------------------')
+            
             option = input('Your MENU option: ')
             
             if(option == '1'):

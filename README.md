@@ -14,6 +14,7 @@
 - Press 3 to Run special numerical problem - second order ordinary differential equation
     - This option allows you to choose different methods among the five. Also you are allowed to change the data points to see different performances.
 - Press E to exit
+- instruction.html is a sample execution (IDE: spyder)
 
 ## Matrix file
 - Matrix files are all .txt file with the size on the first line and a combined nx(n+1) matrix. File name represents the size n.
@@ -29,7 +30,7 @@
     [1 1 3] [x3]   [3]</pre>
 
 - Environment: &nbsp;conda 4.7.12  &nbsp; Python 3.7.4 &nbsp; IDE:  spyder==3.3.6
-
+<br>
 - Video link:  &nbsp; https://www.dropbox.com/s/cdz2j3t4o7hnec7/Program4-demo.mp4?dl=0
 - Video uses Jupyter Notebook for demo<br>
   jupyter core     : 4.5.0<br>
@@ -44,4 +45,8 @@
   nbformat         : 4.4.0<br>
   traitlets        : 4.3.3<br>
 - extra import: <pre>import import_ipynb</pre>
-- extra nstallation: <pre> pip install import_ipynb </pre>
+- extra installation: <pre> pip install import_ipynb </pre>
+
+- /demo is a folder for jupyter notebook, codes include demo functions
+- /Graphs is a folder that contains test results with different data sets
+- /matrices0 & /matrices1 & /small are all converging matrices that work for both Gaussian Elimination and Gauss-Seidel. It is also the test files.

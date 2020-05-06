@@ -46,8 +46,8 @@
     - nbformat         : 4.4.0<br>
     - traitlets        : 4.3.3<br>
     <br>
-    - extra import: <pre>import import_ipynb</pre>
-    - extra installation: <pre> pip install import_ipynb </pre>
+    - extra import for demo: <pre>import import_ipynb</pre>
+        - installation: <pre> pip install import_ipynb </pre>
 - /demo is a folder for jupyter notebooks, codes have extra demo functions
 - /Graphs is a folder that contains test results with different data sets
 - /matrices0 & /matrices1 & /small are all converging matrices that work for both Gaussian Elimination and Gauss-Seidel. It is also the test files.

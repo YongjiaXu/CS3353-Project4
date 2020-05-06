@@ -1,0 +1,137 @@
+Python 3.7.0 (default, Jun 28 2018, 07:39:16)
+Type "copyright", "credits" or "license" for more information.
+
+IPython 7.8.0 -- An enhanced Interactive Python.
+
+In [1]: runfile('/Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project4/interface.py', wdir='/Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project4')
+-------------------------------------------------------------------------------
+1. Solve a system of linear equations (Gaussian ELimination & Gauss-Seidel)
+2. Run generate test (Gaussian Elimination vs Gauss-Seidel)
+3. Run special numerical problem - second order ordinary differential equation
+E. Exit
+-------------------------------------------------------------------------------
+
+Your MENU option: 1
+
+Enter your path to file: 10_0.txt
+Solutions:
+Gauss Elimination: [ 0.01067677  0.00196408  0.01724783  0.00780402  0.00502823 -0.02101084
+ -0.00100807  0.00222368  0.00587126  0.01123301]
+Gauss-Seidel: [ 0.01067677  0.00196409  0.01724783  0.00780402  0.00502823 -0.02101083
+ -0.00100807  0.00222368  0.00587126  0.01123301]
+Scipy: [ 0.01067677  0.00196408  0.01724783  0.00780402  0.00502823 -0.02101084
+ -0.00100807  0.00222368  0.00587126  0.01123301]
+Runtime:
+Gauss Elimination:  0.0008002139999998548 s
+Gauss-Seidel:  0.0013216990000000095 s
+Scipy:  0.009999088999999017 s
+-------------------------------------------------------------------------------
+1. Solve a system of linear equations (Gaussian ELimination & Gauss-Seidel)
+2. Run generate test (Gaussian Elimination vs Gauss-Seidel)
+3. Run special numerical problem - second order ordinary differential equation
+E. Exit
+-------------------------------------------------------------------------------
+
+Your MENU option: 2
+Do you want to use default or customized test (D/C)
+
+Your choice: d
+Using default path...
+<figure titled with 'GE vs GS vs Scipy'>
+
+-------------------------------------------------------------------------------
+1. Solve a system of linear equations (Gaussian ELimination & Gauss-Seidel)
+2. Run generate test (Gaussian Elimination vs Gauss-Seidel)
+3. Run special numerical problem - second order ordinary differential equation
+E. Exit
+-------------------------------------------------------------------------------
+
+Your MENU option: 2
+Do you want to use default or customized test (D/C)
+
+Your choice: c
+
+Please enter your directory: /Users/yongjiaxu/Desktop/CS3353/Program4/CS3353-Project4/matrices0
+<figure titled with 'GE vs GS vs Scipy'>
+
+-------------------------------------------------------------------------------
+1. Solve a system of linear equations (Gaussian ELimination & Gauss-Seidel)
+2. Run generate test (Gaussian Elimination vs Gauss-Seidel)
+3. Run special numerical problem - second order ordinary differential equation
+E. Exit
+-------------------------------------------------------------------------------
+
+Your MENU option: 3
+Do you want to use default or customized test (D/C)
+
+Your choice: d
+<figure titled with 'Runtime performance'>
+<figure titled with '# of iteration comparison'>
+<figure titled with 'Error comparison'>
+
+
+
+-------------------------------------------------------------------------------
+1. Solve a system of linear equations (Gaussian ELimination & Gauss-Seidel)
+2. Run generate test (Gaussian Elimination vs Gauss-Seidel)
+3. Run special numerical problem - second order ordinary differential equation
+E. Exit
+-------------------------------------------------------------------------------
+
+Your MENU option: 3
+Do you want to use default or customized test (D/C)
+
+Your choice: c
+Please enter a list of desired data points; press E to stop entering
+
+Please enter a number of data points: 5
+
+Please enter a number of data points: 10
+
+Please enter a number of data points: 15
+
+Please enter a number of data points: 20
+
+Please enter a number of data points: 25
+
+Please enter a number of data points: 30
+
+Please enter a number of data points: 40
+
+Please enter a number of data points: e
+Please choose solving method; press E to stop entering
+0 - Thomas algorithm
+1 - Jacobi iterative method
+2 - Gauss-Seidel iterative method
+3 - Successive over-relaxation (SOR)
+4 - Gaussian Elimination
+
+Please choose your method: 0
+
+Please choose your method: 3
+
+Please choose your method: 4
+
+Please choose your method: e
+Do you want to display runtime performance?
+
+Yes or No (Y/N): y
+Do you want to display # of iterations(only for Jacobi, Gauss-Seidel, and SOR)?
+
+Yes or No (Y/N): n
+Do you want to display error between real values and numerical solutions?
+
+Yes or No (Y/N): y
+
+<figure titled with 'Runtime performance'>
+<figure titled with 'Error comparison'>
+
+-------------------------------------------------------------------------------
+1. Solve a system of linear equations (Gaussian ELimination & Gauss-Seidel)
+2. Run generate test (Gaussian Elimination vs Gauss-Seidel)
+3. Run special numerical problem - second order ordinary differential equation
+E. Exit
+-------------------------------------------------------------------------------
+
+Your MENU option: e
+Exiting...

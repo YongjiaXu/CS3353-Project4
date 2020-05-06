@@ -14,7 +14,7 @@
 - Press 3 to Run special numerical problem - second order ordinary differential equation
     - This option allows you to choose different methods among the five. Also you are allowed to change the data points to see different performances.
 - Press E to exit
-- instruction.html is a sample execution (IDE: spyder)
+- instruction.txt is a sample execution (IDE: spyder)
 
 ## Matrix file
 - Matrix files are all .txt file with the size on the first line and a combined nx(n+1) matrix. File name represents the size n.

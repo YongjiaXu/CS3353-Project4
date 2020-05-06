@@ -71,3 +71,4 @@ def inner(a, x ,b):
         # updating the values of our solution         
         x[j] = d / a[j,j]
     return x
+

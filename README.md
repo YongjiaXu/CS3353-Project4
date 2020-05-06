@@ -31,6 +31,7 @@
 
 ## Some Info
 - Project is written with python scripts. 
+- If plot pops out, close the plot window to continue execution.
 - Environment: &nbsp;conda 4.7.12  &nbsp; Python 3.7.4 &nbsp; IDE:  spyder==3.3.6 &nbsp;&nbsp;other dependencies are in requirements.txt<br>
 - Video link:  &nbsp; https://www.dropbox.com/s/cdz2j3t4o7hnec7/Program4-demo.mp4?dl=0 <br>
 - Video uses Jupyter Notebook for demo<br>

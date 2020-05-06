@@ -30,6 +30,7 @@
 
 - Environment: conda 4.7.12    Python 3.7.4    IDE:  spyder==3.3.6
 
+- Video link:    https://www.dropbox.com/s/cdz2j3t4o7hnec7/Program4-demo.mp4?dl=0
 - Video uses Jupyter Notebook for demo<br>
   jupyter core     : 4.5.0<br>
   jupyter-notebook : 6.0.1<br>
@@ -42,5 +43,5 @@
   ipywidgets       : 7.5.1<br>
   nbformat         : 4.4.0<br>
   traitlets        : 4.3.3<br>
-- extra import: <pre>import import_ipynb</pre>i
+- extra import: <pre>import import_ipynb</pre>
 - extra nstallation: <pre> pip install import_ipynb </pre>
